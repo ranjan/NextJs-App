@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { API_BASE_URL } from "@/config/api";
-
+import { useRouter } from "next/navigation";
 
 
 export default function VerifyPage() {
@@ -14,6 +14,7 @@ export default function VerifyPage() {
   const [token, setToken] = useState("")
   const [loading, setLoading] = useState("")
   const [message, setMessage] = useState("")
+  const router = useRouter();
 
 
   const handleAction = async (e: React.FormEvent) => {
@@ -53,6 +54,7 @@ export default function VerifyPage() {
   };
 
   return (
+    <Layout>
     <div className="min-h-screen flex items-center justify-center p-6">
       <form onSubmit={handleAction} className="w-full max-w-sm space-y-4">
         <h2 className="text-2xl font-semibold">
@@ -103,6 +105,7 @@ export default function VerifyPage() {
         {message && <p className="text-center text-gray-700 mt-3">{message}</p>}
       </form>
     </div>
+    </Layout>
   );
 
 }

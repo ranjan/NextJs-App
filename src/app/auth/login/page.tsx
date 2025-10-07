@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import { API_BASE_URL } from "@/config/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 
 export default function LoginPage() {
@@ -14,7 +15,7 @@ export default function LoginPage() {
   const [message, setMessage] = useState("")
   const body = { email, password };
   const router = useRouter();
-
+  const { login } = useAuth();
 
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -33,12 +34,16 @@ export default function LoginPage() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || data.message || "Action failed");
+      if (!res.ok) throw new Error(data.detail || data.message || "Login failed");
+
+      if (!data.access_token) throw new Error("No access token returned by server");
+
+      login(data.access_token);
 
       setMessage(data.message || "Success!");
-      setTimeout(() => {
-          router.push(`/dashboard`);
-        }, 1500);
+      login(data.access_token);
+      router.push(`/dashboard`);
+        
     } catch (err: any) {
       setMessage(err.message || "Something went wrong");
     } finally {
