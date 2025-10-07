@@ -38,7 +38,7 @@ export default function VerifyPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleVerify = async (e: any) => {
     e.preventDefault();
     console.log("🚀 Form submitted", formData);
 
@@ -77,7 +77,7 @@ export default function VerifyPage() {
         <h1 className="text-3xl font-bold">Verify Page</h1>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleVerify}
           className="flex flex-col gap-4 w-80 bg-white p-6 rounded-xl shadow-md"
         >
           {["email", "token"].map((field) => (

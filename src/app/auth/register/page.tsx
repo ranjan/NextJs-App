@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { API_BASE_URL } from "@/config/api";
 import { useRouter } from "next/navigation";
 
@@ -52,7 +52,7 @@ export default function RegisterPage() {
         console.log("✅ Registration successful. Redirecting ...");
         setMessage("✅ Registration successful! Redirecting ...");
         setTimeout(() => {
-          router.push(`/verify?email=${formData.email}`);
+          router.push(`/auth/verify?email=${formData.email}?mdoe=verify`);
         }, 1500);
       } else {
         const data = await response.json();
@@ -101,7 +101,7 @@ export default function RegisterPage() {
 
         <p className="text-gray-600">
           Already have an account?{" "}
-          <Link href="/login" className="text-blue-500 hover:underline">
+          <Link href="/auth/login" className="text-blue-500 hover:underline">
             Login here
           </Link>
         </p>

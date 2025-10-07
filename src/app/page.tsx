@@ -2,8 +2,8 @@ import Link from "next/link";
 import Layout from "./components/Layout";
 
 const LINKS = [
-  { href: "/login", label: "Login", type: "auth" },
-  { href: "/register", label: "Register", type: "auth" },
+  { href: "/auth/login", label: "Login", type: "auth" },
+  { href: "/auth/register", label: "Register", type: "auth" },
   { href: "/users", label: "User List", type: "data" },
 ];
 

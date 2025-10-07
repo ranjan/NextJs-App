@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
 export default function LoginPage() {
   return (
@@ -28,10 +28,10 @@ export default function LoginPage() {
 
         <p className="text-gray-600 flex flex-col items-left justify-center">
           Don’t have an account?{" "}
-          <Link href="/register" className="text-blue-500 hover:underline">
+          <Link href="/auth/register" className="text-blue-500 hover:underline">
             Register here
           </Link>
-          <Link href="/verify" className="text-blue-500 hover:underline">
+          <Link href="/auth/verify?mode=verify" className="text-blue-500 hover:underline">
             Verify
           </Link>
         </p>
