@@ -5,6 +5,8 @@ import { API_BASE_URL } from "@/config/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/AuthContext";
+import { authService } from "@/services/authService";
+
 
 
 export default function LoginPage() {
@@ -24,18 +26,8 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      let url = "";
-      url = `${API_BASE_URL}/auth/login`;
-    
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || data.message || "Login failed");
-
+      const data = await authService.login(email, password);
+      
       if (!data.access_token) throw new Error("No access token returned by server");
 
       login(data.access_token);

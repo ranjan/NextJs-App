@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { API_BASE_URL } from "@/config/api";
 import { useRouter } from "next/navigation";
-
+import Layout from "../../components/Layout";
+import { authService } from "@/services/authService";
 
 export default function VerifyPage() {
   
@@ -23,24 +24,13 @@ export default function VerifyPage() {
     setLoading(true);
 
     try {
-      let url = "";
-      let body: any = { email };
+      let data: any;
 
       if (mode === "verify") {
-        url = `${API_BASE_URL}/auth/verify_user`;
-        body.token = token;
+        data = await authService.verifyUser(email, token);
       } else if (mode === "resend") {
-        url = `${API_BASE_URL}/auth/resend_verification_code`;
+        data = await authService.resendVerificationCode(email)
       }
-
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || data.message || "Action failed");
 
       setMessage(data.message || "Success!");
       setTimeout(() => {
