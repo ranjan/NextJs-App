@@ -10,14 +10,13 @@ export default function VerifyPage() {
   
   const searchParams = useSearchParams();
   const mode = searchParams?.get("mode") || "verify"
-
   const [email, setEmail] = useState("")
   const [token, setToken] = useState("")
   const [loading, setLoading] = useState("")
   const [message, setMessage] = useState("")
 
 
-    const handleAction = async (e: React.FormEvent) => {
+  const handleAction = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
@@ -53,7 +52,7 @@ export default function VerifyPage() {
     }
   };
 
-    return (
+  return (
     <div className="min-h-screen flex items-center justify-center p-6">
       <form onSubmit={handleAction} className="w-full max-w-sm space-y-4">
         <h2 className="text-2xl font-semibold">
