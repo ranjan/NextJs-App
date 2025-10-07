@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 import { API_BASE_URL } from "@/config/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/hooks/AuthContext";
 
 
 export default function LoginPage() {
